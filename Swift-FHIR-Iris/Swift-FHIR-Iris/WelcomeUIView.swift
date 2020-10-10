@@ -14,8 +14,7 @@ struct WelcomeUIView: View {
     var body: some View {
         
         VStack{
-            Spacer()
-            Text("Hi, welcome to Swift FHIR and IRIS")
+
             Spacer()
             
             Text("You have not yet authorise this application to use your health data").isHidden(authorise,remove: authorise)
@@ -27,11 +26,18 @@ struct WelcomeUIView: View {
               Text("Authorise")
             }).isHidden(authorise,remove: authorise)
             
-            Button(action: { self.authorise = !self.authorise }, label: {
+            Button(action: { self.goHome()  }, label: {
               Text("Continue")
             }).isHidden(!authorise,remove: !authorise)
             
             Spacer()
+        }
+    }
+    
+    func goHome() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: ContentView())
+            window.makeKeyAndVisible()
         }
     }
 }

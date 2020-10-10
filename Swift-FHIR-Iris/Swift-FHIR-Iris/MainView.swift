@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    let disciplines = ["statue", "mural", "plaque"]
+    
     var body: some View {
         NavigationView{
             VStack{
-                List {
-                    Text("Hello World")
-                    Text("Hello World2")
+                List(disciplines, id: \.self) { discipline in
+                  Text(discipline)
                 }.listStyle(GroupedListStyle())
                 
                 Button(action: { }, label: {
@@ -25,7 +27,9 @@ struct MainView: View {
             }
             .navigationBarTitle(Text("Step Count"), displayMode: .inline)
             .navigationBarItems(
-                trailing: Button("Settings",action: { }))
+                trailing:             NavigationLink(destination: ConfigurationView()) {
+                    Text("Config")
+                 })
         }
     }
 }

@@ -7,9 +7,18 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
+    
+    @State private var authorise :Bool = false
+    
     var body: some View {
-        WelcomeUIView()
+            if !authorise {
+                WelcomeUIView()
+            }else {
+                MainView()
+            }
     }
 }
 
