@@ -14,6 +14,7 @@
 		6338866F25309D6300D7075E /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338866E25309D6300D7075E /* ConfigurationView.swift */; };
 		63388676253209D800D7075E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63388675253209D800D7075E /* HealthKit.framework */; };
 		63388679253211F600D7075E /* WelcomeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63388678253211F500D7075E /* WelcomeUIView.swift */; };
+		6338867C2532167C00D7075E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338867B2532167C00D7075E /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		63388673253209D800D7075E /* Swift-FHIR-Iris.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Swift-FHIR-Iris.entitlements"; sourceTree = "<group>"; };
 		63388675253209D800D7075E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		63388678253211F500D7075E /* WelcomeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUIView.swift; sourceTree = "<group>"; };
+		6338867B2532167C00D7075E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				6338866725309AA200D7075E /* Info.plist */,
 				6338866425309AA200D7075E /* Preview Content */,
 				63388678253211F500D7075E /* WelcomeUIView.swift */,
+				6338867B2532167C00D7075E /* MainView.swift */,
 			);
 			path = "Swift-FHIR-Iris";
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				6338866125309A9F00D7075E /* ContentView.swift in Sources */,
 				6338866F25309D6300D7075E /* ConfigurationView.swift in Sources */,
 				6338865F25309A9F00D7075E /* Swift_FHIR_IrisApp.swift in Sources */,
+				6338867C2532167C00D7075E /* MainView.swift in Sources */,
 				63388679253211F600D7075E /* WelcomeUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

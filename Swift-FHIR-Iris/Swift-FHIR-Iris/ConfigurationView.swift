@@ -73,8 +73,15 @@ struct ConfigurationView: View {
                 Button(action: { }, label: {
                   Text("Save and Test")
                 })
-            }
 
+            }
+            .navigationBarTitle(Text("Config"), displayMode: .inline)
+            .navigationBarItems(leading: Button(action: { }) {
+                HStack {
+                    Image(systemName: "chevron.left")
+                    Text("Back")
+                }
+            })
         
         }
         
