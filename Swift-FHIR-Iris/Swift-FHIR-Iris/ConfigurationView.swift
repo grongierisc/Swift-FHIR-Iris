@@ -6,11 +6,80 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct ConfigurationView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+    @State private var firstName :String = "First Name"
+    @State private var lastName :String = "Last Name"
+    @State private var gender = "Unknow"
+    @State private var url = "http://localhost:52773/v1/fhiraas/toto/fhir/r4/endpoint/"
+    @State var birthDay = Date()
+    
+    struct Gender {
+        static let gender = [
+            "Male",
+            "Female",
+            "Other",
+            "Unknow"
+        ]
     }
+    
+    
+    var body: some View {
+        NavigationView {
+
+            Form {
+             
+                Section(header: Text("Patient")){
+                    HStack {
+                        Text("First Name")
+                        Spacer()
+                        TextField("Enter your first name", text: $firstName).multilineTextAlignment(.trailing)
+                    }
+             
+                    HStack {
+                        Text("Last Name")
+                        Spacer()
+                        TextField("Enter your last name", text: $lastName).multilineTextAlignment(.trailing)
+                    }
+             
+                    HStack {
+                        Picker(selection : $gender, label: Text("Gender")) {
+                                ForEach(Gender.gender, id: \.self) { gender in
+                                    Text(gender).tag(gender)
+                                }
+                        }
+                    }
+                    HStack {
+                        DatePicker(
+                            selection: $birthDay,
+                            displayedComponents: .date,
+                            label: { Text("Day of birth") }
+                        )
+                    }
+ 
+                    
+                }
+                Section(header: Text("Server Setting")) {
+                    HStack {
+                        Text("URL")
+                        Spacer()
+                        TextField("Url", text: $url).multilineTextAlignment(.trailing)
+                    }
+
+
+                }
+                Button(action: { }, label: {
+                  Text("Save and Test")
+                })
+            }
+
+        
+        }
+        
+    }
+   
 }
 
 struct ConfigurationView_Previews: PreviewProvider {

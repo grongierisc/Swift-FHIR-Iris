@@ -11,6 +11,8 @@
 		6338866125309A9F00D7075E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338866025309A9F00D7075E /* ContentView.swift */; };
 		6338866325309AA200D7075E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6338866225309AA200D7075E /* Assets.xcassets */; };
 		6338866625309AA200D7075E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6338866525309AA200D7075E /* Preview Assets.xcassets */; };
+		6338866F25309D6300D7075E /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338866E25309D6300D7075E /* ConfigurationView.swift */; };
+		63388676253209D800D7075E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63388675253209D800D7075E /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,9 @@
 		6338866225309AA200D7075E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6338866525309AA200D7075E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6338866725309AA200D7075E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6338866E25309D6300D7075E /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		63388673253209D800D7075E /* Swift-FHIR-Iris.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Swift-FHIR-Iris.entitlements"; sourceTree = "<group>"; };
+		63388675253209D800D7075E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63388676253209D800D7075E /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +44,7 @@
 			children = (
 				6338865D25309A9F00D7075E /* Swift-FHIR-Iris */,
 				6338865C25309A9F00D7075E /* Products */,
+				63388674253209D800D7075E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,8 +59,10 @@
 		6338865D25309A9F00D7075E /* Swift-FHIR-Iris */ = {
 			isa = PBXGroup;
 			children = (
+				63388673253209D800D7075E /* Swift-FHIR-Iris.entitlements */,
 				6338865E25309A9F00D7075E /* Swift_FHIR_IrisApp.swift */,
 				6338866025309A9F00D7075E /* ContentView.swift */,
+				6338866E25309D6300D7075E /* ConfigurationView.swift */,
 				6338866225309AA200D7075E /* Assets.xcassets */,
 				6338866725309AA200D7075E /* Info.plist */,
 				6338866425309AA200D7075E /* Preview Content */,
@@ -67,6 +76,14 @@
 				6338866525309AA200D7075E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63388674253209D800D7075E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63388675253209D800D7075E /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6338866125309A9F00D7075E /* ContentView.swift in Sources */,
+				6338866F25309D6300D7075E /* ConfigurationView.swift in Sources */,
 				6338865F25309A9F00D7075E /* Swift_FHIR_IrisApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +285,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Swift-FHIR-Iris/Swift-FHIR-Iris.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Swift-FHIR-Iris/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -288,6 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Swift-FHIR-Iris/Swift-FHIR-Iris.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Swift-FHIR-Iris/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
