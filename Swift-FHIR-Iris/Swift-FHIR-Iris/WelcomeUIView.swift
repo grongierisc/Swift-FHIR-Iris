@@ -9,7 +9,8 @@ import SwiftUI
 
 struct WelcomeUIView: View {
     
-    @State private var authorise :Bool = false
+    // Get the business logic from the environment.
+    @EnvironmentObject var swiftIrisManager: SwiftFhirIrisManager
     
     var body: some View {
         
@@ -17,18 +18,18 @@ struct WelcomeUIView: View {
 
             Spacer()
             
-            Text("You have not yet authorise this application to use your health data").isHidden(authorise,remove: authorise)
+            Text("You have not yet authorise this application to use your health data").isHidden(swiftIrisManager.authorisedHK,remove: swiftIrisManager.authorisedHK)
 
-            Text("You have authorise this application to use your health data").isHidden(!authorise,remove: !authorise)
+            Text("You have authorise this application to use your health data").isHidden(!swiftIrisManager.authorisedHK,remove: !swiftIrisManager.authorisedHK)
             Spacer()
             
-            Button(action: { self.authorise = !self.authorise  }, label: {
+            Button(action: { swiftIrisManager.requestAuthorization() }, label: {
               Text("Authorise")
-            }).isHidden(authorise,remove: authorise)
+            }).isHidden(swiftIrisManager.authorisedHK,remove: swiftIrisManager.authorisedHK)
             
             Button(action: { self.goHome()  }, label: {
               Text("Continue")
-            }).isHidden(!authorise,remove: !authorise)
+            }).isHidden(!swiftIrisManager.authorisedHK,remove: !swiftIrisManager.authorisedHK)
             
             Spacer()
         }
@@ -40,6 +41,9 @@ struct WelcomeUIView: View {
             window.makeKeyAndVisible()
         }
     }
+    
+    
+    
 }
 
 struct WelcomeUIView_Previews: PreviewProvider {

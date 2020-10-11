@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		63388676253209D800D7075E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63388675253209D800D7075E /* HealthKit.framework */; };
 		63388679253211F600D7075E /* WelcomeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63388678253211F500D7075E /* WelcomeUIView.swift */; };
 		6338867C2532167C00D7075E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338867B2532167C00D7075E /* MainView.swift */; };
+		6338868325332E1300D7075E /* HealthKitToFhir in Frameworks */ = {isa = PBXBuildFile; productRef = 6338868225332E1300D7075E /* HealthKitToFhir */; };
+		633886872533374800D7075E /* SwiftFhirIrisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633886862533374800D7075E /* SwiftFhirIrisManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,7 @@
 		63388675253209D800D7075E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		63388678253211F500D7075E /* WelcomeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUIView.swift; sourceTree = "<group>"; };
 		6338867B2532167C00D7075E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		633886862533374800D7075E /* SwiftFhirIrisManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFhirIrisManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63388676253209D800D7075E /* HealthKit.framework in Frameworks */,
+				6338868325332E1300D7075E /* HealthKitToFhir in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +76,7 @@
 				6338866425309AA200D7075E /* Preview Content */,
 				63388678253211F500D7075E /* WelcomeUIView.swift */,
 				6338867B2532167C00D7075E /* MainView.swift */,
+				633886862533374800D7075E /* SwiftFhirIrisManager.swift */,
 			);
 			path = "Swift-FHIR-Iris";
 			sourceTree = "<group>";
@@ -108,6 +113,9 @@
 			dependencies = (
 			);
 			name = "Swift-FHIR-Iris";
+			packageProductDependencies = (
+				6338868225332E1300D7075E /* HealthKitToFhir */,
+			);
 			productName = "Swift-FHIR-Iris";
 			productReference = 6338865B25309A9F00D7075E /* Swift-FHIR-Iris.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +143,9 @@
 				Base,
 			);
 			mainGroup = 6338865225309A9F00D7075E;
+			packageReferences = (
+				6338868125332E1300D7075E /* XCRemoteSwiftPackageReference "healthkit-to-fhir" */,
+			);
 			productRefGroup = 6338865C25309A9F00D7075E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -164,6 +175,7 @@
 				6338866125309A9F00D7075E /* ContentView.swift in Sources */,
 				6338866F25309D6300D7075E /* ConfigurationView.swift in Sources */,
 				6338865F25309A9F00D7075E /* Swift_FHIR_IrisApp.swift in Sources */,
+				633886872533374800D7075E /* SwiftFhirIrisManager.swift in Sources */,
 				6338867C2532167C00D7075E /* MainView.swift in Sources */,
 				63388679253211F600D7075E /* WelcomeUIView.swift in Sources */,
 			);
@@ -354,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6338868125332E1300D7075E /* XCRemoteSwiftPackageReference "healthkit-to-fhir" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:microsoft/healthkit-to-fhir.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6338868225332E1300D7075E /* HealthKitToFhir */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6338868125332E1300D7075E /* XCRemoteSwiftPackageReference "healthkit-to-fhir" */;
+			productName = HealthKitToFhir;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6338865325309A9F00D7075E /* Project object */;
 }

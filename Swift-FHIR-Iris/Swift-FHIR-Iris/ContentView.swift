@@ -11,13 +11,18 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var authorise :Bool = false
+    // Get the business logic from the environment.
+    @EnvironmentObject var swiftFhirIrisManager: SwiftFhirIrisManager
+    
+    var authorise : Bool = false
     
     var body: some View {
-            if !authorise {
+        if !swiftFhirIrisManager.authorisedHK {
                 WelcomeUIView()
+                    .environmentObject(swiftFhirIrisManager)
             }else {
                 MainView()
+                    .environmentObject(swiftFhirIrisManager)
             }
     }
 }

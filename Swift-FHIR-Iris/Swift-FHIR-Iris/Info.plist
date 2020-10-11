@@ -46,5 +46,25 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>localhost</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+
+            </dict>
+        </dict>
+    </dict>
+    <key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+    <string>Read data for IrisExporter</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>Send data to IRIS</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>Write date for IrisExporter</string>
 </dict>
 </plist>

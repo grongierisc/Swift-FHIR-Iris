@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct Swift_FHIR_IrisApp: App {
+    
+    // Get the business logic from the environment.
+    var swiftFhirIrisManager = SwiftFhirIrisManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(swiftFhirIrisManager)
         }
     }
 }
