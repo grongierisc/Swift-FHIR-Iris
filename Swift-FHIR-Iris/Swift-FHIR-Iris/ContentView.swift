@@ -17,13 +17,10 @@ struct ContentView: View {
     var authorise : Bool = false
     
     var body: some View {
-        if !swiftFhirIrisManager.authorisedHK {
+        
                 WelcomeUIView()
                     .environmentObject(swiftFhirIrisManager)
-            }else {
-                MainView()
-                    .environmentObject(swiftFhirIrisManager)
-            }
+
     }
 }
 

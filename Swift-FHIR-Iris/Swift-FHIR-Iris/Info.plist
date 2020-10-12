@@ -56,7 +56,6 @@
                 <true/>
                 <key>NSExceptionAllowsInsecureHTTPLoads</key>
                 <true/>
-
             </dict>
         </dict>
     </dict>

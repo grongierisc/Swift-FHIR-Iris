@@ -17,6 +17,8 @@
 		6338867C2532167C00D7075E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338867B2532167C00D7075E /* MainView.swift */; };
 		6338868325332E1300D7075E /* HealthKitToFhir in Frameworks */ = {isa = PBXBuildFile; productRef = 6338868225332E1300D7075E /* HealthKitToFhir */; };
 		633886872533374800D7075E /* SwiftFhirIrisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633886862533374800D7075E /* SwiftFhirIrisManager.swift */; };
+		6338868B2534953C00D7075E /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338868A2534953C00D7075E /* ViewExtension.swift */; };
+		6338868E253495D800D7075E /* PatientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338868D253495D800D7075E /* PatientExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		63388678253211F500D7075E /* WelcomeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUIView.swift; sourceTree = "<group>"; };
 		6338867B2532167C00D7075E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		633886862533374800D7075E /* SwiftFhirIrisManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFhirIrisManager.swift; sourceTree = "<group>"; };
+		6338868A2534953C00D7075E /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		6338868D253495D800D7075E /* PatientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 		6338865D25309A9F00D7075E /* Swift-FHIR-Iris */ = {
 			isa = PBXGroup;
 			children = (
+				633886892534951900D7075E /* Extentions */,
 				63388673253209D800D7075E /* Swift-FHIR-Iris.entitlements */,
 				6338865E25309A9F00D7075E /* Swift_FHIR_IrisApp.swift */,
 				6338866025309A9F00D7075E /* ContentView.swift */,
@@ -95,6 +100,15 @@
 				63388675253209D800D7075E /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		633886892534951900D7075E /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				6338868A2534953C00D7075E /* ViewExtension.swift */,
+				6338868D253495D800D7075E /* PatientExtension.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +189,8 @@
 				6338866125309A9F00D7075E /* ContentView.swift in Sources */,
 				6338866F25309D6300D7075E /* ConfigurationView.swift in Sources */,
 				6338865F25309A9F00D7075E /* Swift_FHIR_IrisApp.swift in Sources */,
+				6338868E253495D800D7075E /* PatientExtension.swift in Sources */,
+				6338868B2534953C00D7075E /* ViewExtension.swift in Sources */,
 				633886872533374800D7075E /* SwiftFhirIrisManager.swift in Sources */,
 				6338867C2532167C00D7075E /* MainView.swift in Sources */,
 				63388679253211F600D7075E /* WelcomeUIView.swift in Sources */,

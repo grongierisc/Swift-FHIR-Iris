@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct WelcomeUIView: View {
     
@@ -23,7 +24,7 @@ struct WelcomeUIView: View {
             Text("You have authorise this application to use your health data").isHidden(!swiftIrisManager.authorisedHK,remove: !swiftIrisManager.authorisedHK)
             Spacer()
             
-            Button(action: { swiftIrisManager.requestAuthorization() }, label: {
+            Button(action: { getAuthorization() }, label: {
               Text("Authorise")
             }).isHidden(swiftIrisManager.authorisedHK,remove: swiftIrisManager.authorisedHK)
             
@@ -37,9 +38,14 @@ struct WelcomeUIView: View {
     
     func goHome() {
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = UIHostingController(rootView: ContentView())
+            window.rootViewController = UIHostingController(rootView: ConfigurationView()
+                                                                .environmentObject(swiftIrisManager))
             window.makeKeyAndVisible()
         }
+    }
+    
+    func getAuthorization() {
+        swiftIrisManager.requestAuthorization()
     }
     
     
@@ -52,32 +58,4 @@ struct WelcomeUIView_Previews: PreviewProvider {
     }
 }
 
-extension View {
-    
-    /// Hide or show the view based on a boolean value.
-    ///
-    /// Example for visibility:
-    /// ```
-    /// Text("Label")
-    ///     .isHidden(true)
-    /// ```
-    ///
-    /// Example for complete removal:
-    /// ```
-    /// Text("Label")
-    ///     .isHidden(true, remove: true)
-    /// ```
-    ///
-    /// - Parameters:
-    ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
-    ///   - remove: Boolean value indicating whether or not to remove the view.
-    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
-        if hidden {
-            if !remove {
-                self.hidden()
-            }
-        } else {
-            self
-        }
-    }
-}
+
