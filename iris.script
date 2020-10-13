@@ -3,7 +3,7 @@ Do ##class(Security.Users).UnExpireUserPasswords("*")
 set props("AutheEnabled") = 64
 set props("NameSpace") = "FHIRSERVER"
 set props("IsNameSpaceDefault") = 0
-set props("DispatchClass") = "User.Dispatch"
+set props("DispatchClass") = "diashenrique.fhir.portal.Dispatch"
 set props("MatchRoles")=":%All"
 zw ##class(Security.Applications).Create("/fhir/api" , .props)
 
@@ -28,6 +28,8 @@ set strategy = ##class(HS.FHIRServer.API.InteractionsStrategy).GetStrategyForEnd
 set config = strategy.GetServiceConfigData()
 set config.DebugMode = 4
 do strategy.SaveServiceConfigData(config)
+
+do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
 
 zpm "load /opt/irisapp/"
 
