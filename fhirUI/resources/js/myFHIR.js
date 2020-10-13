@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     // Instantiate a new FHIR client
     var client = fhir({
-        baseUrl: 'http://localhost:32783/fhir/r4',
+        baseUrl: '/fhir/r4',
 
         headers: {
             'Accept': 'application/fhir+json',
@@ -268,6 +268,11 @@ $(document).ready(function () {
             }).then((res) => {
                 const bundle = res.data;
                 $("#badgeActivity").html(res.data.total);
+
+                if (res.data.total > 0) {
+                    const icone = '<a target="_blank" href="activityresult.html?id=' + patientId + '"><span class="label label-info"><i class="fas fa-chart-line"></i></span></a>';
+                    $("#iconActChart").append(icone);
+                }
 
                 var resourceActivity = JSON.stringify(bundle, undefined, 4);
                 $('#fhirdatasource').append(resourceActivity);
