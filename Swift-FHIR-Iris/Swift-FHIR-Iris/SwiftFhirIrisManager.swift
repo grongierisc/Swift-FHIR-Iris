@@ -136,6 +136,15 @@ class SwiftFhirIrisManager: NSObject,ObservableObject {
      
                             let observation = try! ObservationFactory().observation(from: item)
                             let patientReference = try! Reference(json: ["reference" : "Patient/\(patientId)"])
+                            observation.category = try! [CodeableConcept(json: [
+                                "coding": [
+                                  [
+                                    "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                                    "code": "activity",
+                                    "display": "Activity"
+                                  ]
+                                ]
+                            ])]
                             observation.subject = patientReference
                             observation.status = .final
                             print(observation)
