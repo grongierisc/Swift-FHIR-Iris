@@ -9,6 +9,8 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 <Route Url="/patient/:id" Method="GET" Call="getPatient" Cors="true"/>
 <Route Url="/patient/:id/lab/:code" Method="GET" Call="getLabResult" Cors="true"/>
 <Route Url="/laboptions/:id" Method="GET" Call="getOptions" Cors="true"/>
+<Route Url="/patient/:id/activity/:code" Method="GET" Call="getActivityResult" Cors="true"/>
+<Route Url="/activityoptions/:id" Method="GET" Call="getActivityOptions" Cors="true"/>
 </Routes>
 }
 
@@ -105,6 +107,56 @@ ClassMethod getOptions(pPatientId) As %Status
     Quit $$$OK
 }
 
+ClassMethod getActivityOptions(pPatientId) As %Status
+{
+    Set %response.ContentType = "application/json"
+
+    Set tSC = $System.Status.OK()
+
+    Set arrActResult = []
+
+    Try {
+
+        Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT DISTINCT "_
+                  "GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'code'),'code') as testCode, "_
+                  "GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'display'),'display') as testName "_
+                  "FROM HSFHIR_I0001_R.Rsrc "_ 
+                  "WHERE GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'category'),'code'),0),'code'),'code') = 'activity' "_
+                  "AND GetProp(GetJSON(ResourceString,'subject'),'reference') = 'Patient/"_pPatientId_"'"_
+                  "Order By GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'display'),'display')"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        If (result.%SQLCODE '< 0) {
+
+            While result.%Next() {
+                Set json = { }
+                Do json.%Set("code",result.testCode)
+                Do json.%Set("name",result.testName)
+                Do arrActResult.%Push(json)
+            }
+
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    Write arrActResult.%ToJSON()
+
+    Quit $$$OK
+}
+
 ClassMethod getLabResult(pPatientId, pLabCode) As %Status
 {
     Set %response.ContentType = "application/json"
@@ -153,6 +205,58 @@ ClassMethod getLabResult(pPatientId, pLabCode) As %Status
     }
 
     Write arrLabResult.%ToJSON()
+
+    Quit $$$OK
+}
+
+ClassMethod getActivityResult(pPatientId, pActCode) As %Status
+{
+    Set %response.ContentType = "application/json"
+
+    Set tSC = $System.Status.OK()
+
+    Set arrActResult = []
+
+    Try {
+
+        Set oRS = ##class(%SQL.Statement).%New()
+
+        Set sql = "SELECT "_
+            "GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'display'),'display') as testName, "_
+            "GetProp(GetJSON(ResourceString,'effectiveDateTime'),'effectiveDateTime') as effectiveDateTimeValue, "_
+            "GetProp(GetJSON(ResourceString,'valueQuantity'),'value') as valueQuant "_
+            "FROM HSFHIR_I0001_R.Rsrc "_
+            "WHERE GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'category'),'code'),0),'code'),'code') = 'activity' "_
+            "AND GetProp(GetJSON(ResourceString,'subject'),'reference') = 'Patient/"_pPatientId_"' "_
+            "AND GetProp(GetJSON(GetAtJSON(GetJSON(GetJSON(ResourceString,'code'),'coding'),0),'code'),'code') = '"_pActCode_"'"_
+            "ORDER BY GetProp(GetJSON(ResourceString,'effectiveDateTime'),'effectiveDateTime')"
+
+        Set tSC = oRS.%Prepare(sql)
+
+        Quit:$System.Status.IsError(tSC)
+
+        Set result = oRS.%Execute()
+
+        If (result.%SQLCODE '< 0) {
+
+            While result.%Next() {
+                Set json = { }
+                Do json.%Set("testName",result.testName)
+                Do json.%Set("date",result.effectiveDateTimeValue)
+                Do json.%Set("value",result.valueQuant)
+                Do arrActResult.%Push(json)
+            }
+        }
+        Else {
+            Throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE,result.%Message)
+        }
+
+    }
+    Catch (oException) {
+        Set tSC = oException.AsStatus()
+    }
+
+    Write arrActResult.%ToJSON()
 
     Quit $$$OK
 }
