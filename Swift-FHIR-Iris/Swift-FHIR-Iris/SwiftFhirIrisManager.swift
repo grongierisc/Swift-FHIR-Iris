@@ -150,8 +150,12 @@ class SwiftFhirIrisManager: NSObject,ObservableObject {
 
                 }
             
+            } else {
+                completion(error)
             }
             
         }
+        
+        return
     }
 }

@@ -18,6 +18,7 @@ struct ConfigurationView: View {
 
     @State private var showingSuccess = false
     @State private var textSuccess = ""
+    @State private var textError = ""
     @State private var showingPopup = false
     @State private var progress : Bool = false
     
@@ -55,13 +56,13 @@ struct ConfigurationView: View {
 
                 }
                 Button(action: { test() }, label: {
-                  Text("Test")
+                  Text("Save and test server")
                 })
                 .alert(isPresented: $showingPopup) {
                     if showingSuccess {
                         return Alert(title: Text("Done"), message: Text(textSuccess), dismissButton: .default(Text("OK")))
                     } else {
-                        return Alert(title: Text("Error"), message: Text("An error occurred"), dismissButton: .default(Text("OK")))
+                        return Alert(title: Text("Error"), message: Text(textError), dismissButton: .default(Text("OK")))
                     }
                     
                 }
@@ -101,7 +102,7 @@ struct ConfigurationView: View {
                     if showingSuccess {
                         return Alert(title: Text("Done"), message: Text("Test Succeed"), dismissButton: .default(Text("OK")))
                     } else {
-                        return Alert(title: Text("Error"), message: Text("An error occurred"), dismissButton: .default(Text("OK")))
+                        return Alert(title: Text("Error"), message: Text(textError), dismissButton: .default(Text("OK")))
                     }
                     
                 }
@@ -176,6 +177,35 @@ struct ConfigurationView: View {
     
     private func getUserName() -> Void
     {
+        // TODO
+        guard let cdaType = HKObjectType.documentType(forIdentifier: .CDA) else {
+            fatalError("Unable to create a CDA document type.")
+        }
+         
+        var allDocuments = [HKDocumentSample]()
+        _ = HKDocumentQuery(documentType: cdaType,
+                                       predicate: nil,
+                                       limit: HKObjectQueryNoLimit,
+                                       sortDescriptors: nil,
+                                       includeDocumentData: true) {
+                                        
+                                        (query, resultsOrNil, done, errorOrNil) in
+                                        
+                                        guard let results = resultsOrNil else {
+                                            if errorOrNil != nil {
+                                                // Handle the query error here...
+                                            }
+                                            
+                                            return
+                                        }
+                                        
+                                        allDocuments += results
+                                        
+                                        if done {
+                                            // the allDocuments array now contains all the samples returned by the query.
+                                            // Handle the documents here...
+                                        }
+        }
         
     }
     
@@ -212,6 +242,7 @@ struct ConfigurationView: View {
                 showingSuccess = true
                 textSuccess = "Connected to the fhir repository"
             } else {
+                textError = FHIRError?.description ?? "Unknow error"
                 showingSuccess = false
             }
             
@@ -238,6 +269,7 @@ struct ConfigurationView: View {
                 }
             } else {
                 showingSuccess = false
+                textError = error?.humanized ?? "Unknow error"
             }
             
             return

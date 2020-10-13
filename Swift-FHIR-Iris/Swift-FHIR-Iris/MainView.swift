@@ -19,6 +19,12 @@ struct MainView: View {
     
     @State var listHKObject : [HKQuantitySample] = [HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!, quantity: .init(unit: .count(), doubleValue: 0.0), start: Date(), end: Date())]
     
+    @State private var showingSuccess = false
+    @State private var textSuccess = ""
+    @State private var textError = ""
+    @State private var showingPopup = false
+    @State private var progress : Bool = false
+    
     var body: some View {
 
             VStack{
@@ -32,13 +38,24 @@ struct MainView: View {
                     }
                 }
             VStack{
-                    Button(action: {send() }, label: {
-                            Text("Send")})
+                Button(action: {send() }, label: {
+                        Text("Send")}).alert(isPresented: $showingPopup) {
+                            if showingSuccess {
+                                return Alert(title: Text("Done"), message: Text(textSuccess), dismissButton: .default(Text("OK")))
+                            } else {
+                                return Alert(title: Text("Error"), message: Text("An error occurred"), dismissButton: .default(Text("OK")))
+                            }
+                            
+                        }
                 }
             
             Spacer()
             
         }.onAppear(perform: queryStepCount)
+         .isHidden(progress, remove: progress)
+        VStack {
+            ProgressView("Sending…")
+        }.isHidden(!progress, remove: !progress)
     }
     
     func queryStepCount(){
@@ -84,7 +101,19 @@ struct MainView: View {
     }
     
     private func send() {
-        swiftFhirIrisManager.send(hksamples: listHKObject) { (error) in  }
+        
+        progress = true
+        
+        swiftFhirIrisManager.send(hksamples: listHKObject) { (error) in
+            if error == nil {
+                showingSuccess = true
+                textSuccess = "\(listHKObject.count) observations are sent"
+            } else {
+                textSuccess = ""
+            }
+            showingPopup = true
+            progress = false
+        }
     }
 }
 
