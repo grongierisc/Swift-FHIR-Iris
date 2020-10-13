@@ -22,14 +22,14 @@ struct ConfigurationView: View {
     @State private var showingPopup = false
     @State private var progress : Bool = false
     
-    @State private var url : String = "http://localhost:52773/v1/fhiraas/toto/fhir/r4/endpoint/"
+    @State private var url : String = "http://localhost:32783/fhir/r4/"
     
     struct Gender {
         static let gender = [
             "male",
             "female",
             "other",
-            "unknow"
+            "unknown"
         ]
     }
     
@@ -170,7 +170,7 @@ struct ConfigurationView: View {
             case .other:
                 swiftIrisManager.gender = "other"
             default:
-                swiftIrisManager.gender = "unknow"
+                swiftIrisManager.gender = "unknown"
         }
 
     }

@@ -16,9 +16,9 @@ class SwiftFhirIrisManager: NSObject,ObservableObject {
     
     let healthStore = HKHealthStore()
     
-    @Published var fhirUrl : URL = URL(string: "http://localhost:52773/v1/fhiraas/toto/fhir/r4/endpoint/")!
+    @Published var fhirUrl : URL = URL(string: "http://localhost:32783/fhir/r4/")!
     
-    var fhirServer: FHIROpenServer = FHIROpenServer(baseURL: URL(string: "http://localhost:52773/v1/fhiraas/toto/fhir/r4/endpoint/")!)
+    var fhirServer: FHIROpenServer = FHIROpenServer(baseURL: URL(string: "http://localhost:32783/fhir/r4/")!)
     
     @Published var firstName :String = ""
     @Published var lastName :String = ""
@@ -87,6 +87,12 @@ class SwiftFhirIrisManager: NSObject,ObservableObject {
     
     func getPatientByName(completion: @escaping (Patient?, Error?) -> Void ) {
         
+        if self.lastName == "" {
+            self.lastName = "unknown"
+        }
+        if self.firstName == "" {
+            self.firstName = "unknown"
+        }
         // search patient on the fhir repository by family name
         Patient.search(["family": "\(self.lastName)"]).perform(fhirServer) { (bundle, error) in
             guard error == nil else {
