@@ -26,10 +26,10 @@ struct ConfigurationView: View {
     
     struct Gender {
         static let gender = [
-            "Male",
-            "Female",
-            "Other",
-            "Unknow"
+            "male",
+            "female",
+            "other",
+            "unknow"
         ]
     }
     
@@ -164,13 +164,13 @@ struct ConfigurationView: View {
         
         switch biologicalSexObject.biologicalSex {
             case .male:
-                swiftIrisManager.gender = "Male"
+                swiftIrisManager.gender = "male"
             case .female:
-                swiftIrisManager.gender = "Female"
+                swiftIrisManager.gender = "female"
             case .other:
-                swiftIrisManager.gender = "Other"
+                swiftIrisManager.gender = "other"
             default:
-                swiftIrisManager.gender = "Unknow"
+                swiftIrisManager.gender = "unknow"
         }
 
     }
