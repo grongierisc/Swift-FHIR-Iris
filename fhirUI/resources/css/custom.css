@@ -1,0 +1,42 @@
+.navbar-white {
+    background-color: #ffffff;
+}
+
+.brand-image {
+    margin-top: -.5rem;
+    margin-right: .2rem;
+    height: 33px;
+}
+
+.app-header .navbar {
+    padding-top: .850rem;
+}
+
+#toast-container>.toast {
+    background-image: none !important;
+}
+
+#toast-container>.toast:before {
+    position: fixed;
+    font-family: FontAwesome;
+    font-size: 24px;
+    line-height: 18px;
+    float: left;
+    color: #FFF;
+    padding-right: 0.5em;
+    margin: auto 0.5em auto -1.5em;
+}
+
+#toast-container>.toast-error:before {
+    content: "\f119";
+}
+
+#toast-container>.toast-success:before {
+    content: "\f00c";
+}
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
