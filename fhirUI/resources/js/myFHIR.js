@@ -101,12 +101,14 @@ $(document).ready(function () {
                     $("#allergyTable tbody").empty();
                     $("#observationTable tbody").empty();
                     $("#vitalSignsTable tbody").empty();
+                    $("#activityTable tbody").empty();
                     $("#laboratoryTable tbody").empty();
                     $("#immunizationTable tbody").empty();
                     $("#iconChart").empty();
                     $("#updateData").prop('disabled', false);
 
                     allergy(patient.resource.id);
+                    activity(patient.resource.id);
                     observation(patient.resource.id);
                     vitalsigns(patient.resource.id);
                     laboratory(patient.resource.id);
@@ -254,6 +256,46 @@ $(document).ready(function () {
             });
     };
 
+    // Perform a search to Vital Signs list for a specific patient
+    window.activity = function (patientId) {
+        client.search({
+                type: 'Observation',
+                query: {
+                    patient: patientId,
+                    category: 'activity',
+                    _sort: 'date'
+                }
+            }).then((res) => {
+                const bundle = res.data;
+                $("#badgeActivity").html(res.data.total);
+
+                var resourceActivity = JSON.stringify(bundle, undefined, 4);
+                $('#fhirdatasource').append(resourceActivity);
+
+                bundle.entry.forEach((activity) => {
+                    if (activity.resource.hasOwnProperty('valueQuantity')) {
+                        const activityRow = '<tr><td>' + activity.resource.code.coding[0].display + '</td><td>' + activity.resource.valueQuantity.value + '</td><td>' + activity.resource.valueQuantity.unit + '</td><td>' + activity.resource.effectiveDateTime + '</td></tr>';
+                        $("#activityTable tbody").append(activityRow);
+                    } else {
+                        activity.resource.component.forEach((bp) => {
+                            const vitalBpRow = '<tr><td>' + bp.code.text + '</td><td>' + bp.valueQuantity.value + '</td><td>' + bp.valueQuantity.unit + '</td><td>' + activity.resource.effectiveDateTime + '</td></tr>';
+                            $("#activityTable tbody").append(vitalBpRow);
+                        });
+                    }
+                });
+            })
+            .catch((err) => {
+                // Error responses
+                if (err.status) {
+                    console.log(err);
+                    console.log('Error', err.status);
+                }
+                // Errors
+                if (err.data && err.data) {
+                    console.log('Error', err.data);
+                }
+            });
+    };
 
     // Perform a search to Vital Signs list for a specific patient
     window.vitalsigns = function (patientId) {
