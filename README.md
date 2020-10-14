@@ -1,6 +1,8 @@
 # Swift-FHIR-Iris
 iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR respository)
 
+![main](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/FHIR.png)
+
 ## Goal of this demo
 
 The objective is to create an end-to-end demonstration of the FHIR protocol.
