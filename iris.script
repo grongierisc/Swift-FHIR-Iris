@@ -31,6 +31,8 @@ do strategy.SaveServiceConfigData(config)
 
 do $System.OBJ.LoadDir("/opt/irisapp/src","ck",,1)
 
+zw ##class(HS.FHIRServer.Tools.DataLoader).SubmitResourceFiles("/opt/irisapp/fhirdata/", namespace, appKey)
+
 zpm "load /opt/irisapp/"
 
 halt
