@@ -1,7 +1,7 @@
 # Swift-FHIR-Iris
 iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR respository)
 
-## Objective
+## Goal of this demo
 
 The objective is to create an end-to-end demonstration of the FHIR protocol.
 
@@ -99,4 +99,17 @@ We can see now that Toto has two new observation and activities.
 You can event clic on the chart button to display it as a chart.
 
 ![portal charts](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/portal_chart.gif)
+
+## How it works
+
+
+
+### iOS
+
+### BackEnd (FHIR)
+
+### FrontEnd
+
+## Todos
+
 
