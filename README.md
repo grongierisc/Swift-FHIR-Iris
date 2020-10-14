@@ -43,7 +43,9 @@ Open the simulator by a clic on the top left arrow.
 ### Configure the simulator
 
 Go to Health
+
 Clic Steps
+
 Add Data
 
 ![simulator](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/configuration_simulator.gif)
@@ -63,19 +65,25 @@ http://localhost:32783/fhir/portal/patientlist.html
 ![portal](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/portal_default.png)
 
 This portal was made by @diashenrique. 
+
 With some modification to handle Apple's activity foot steps.
 
 ### Play with the iOS app
 
 The app will first request you to accept to share some information.
+
 Clic on authorise
 
 ![authorise](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/ios_authorise.gif)
 
 Then you can test the FHIR server by clicking on 'Save and test server'
+
 The deafult settings point on the docker configuration.
+
 If succed, you can enter your patient informations.
+
 First Name, Last Name, Birth day, Genre.
+
 The save the patient to Fhir. A pop-up will show you your unique Fhir ID.
 
 ![savepatient](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/save_patient.gif)
@@ -88,7 +96,9 @@ We can see here, that thier is a new patient "toto" with 0 activities.
 
 Send her activites :
 Go back to the iOS application and clic on Step count
+
 This panel summuries the step count of the week. In our case 2 entries.
+
 Now you can send them to InterSystems IRIS FHIR by a clic on send.
 
 ![ios send](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/ios_send.gif)
