@@ -114,14 +114,42 @@ You can event clic on the chart button to display it as a chart.
 
 ## How it works
 
-
-
 ### iOS
 
-### BackEnd (FHIR)
+Most of this demo is build on SwiftUI.
 
-### FrontEnd
+https://developer.apple.com/xcode/swiftui/
 
-## Todos
+Who is the latest framework for iOS and so.
+
+#### How it's checking for authorization for health datas
+
+It's in the SwiftFhirIrisManager class. 
+
+This class is a singleton and it will be carry all around the application with @EnvironmentObject annotation.
+More info at : https://www.hackingwithswift.com/quick-start/swiftui/how-to-use-environmentobject-to-share-data-between-views
+
+The requestAuthorization method :
+
+```swift
+
+```
+
+### Backend (FHIR)
+
+Not much to say, it's based on the fhir template form the InterSystems community :
+
+https://openexchange.intersystems.com/package/iris-fhir-template
+
+### Frontend
+
+It's based on Henrique works who is a nice front end for FHIR repositories made in jquery.
+
+https://openexchange.intersystems.com/package/iris-fhir-portal
+
+## ToDos
+
+- [ ] add more code comments
+- [ ] handle patient name
 
 
