@@ -132,7 +132,7 @@ More info at : https://www.hackingwithswift.com/quick-start/swiftui/how-to-use-e
 The requestAuthorization method :
 
 ```swift
-
+//TODO
 ```
 
 ### Backend (FHIR)
