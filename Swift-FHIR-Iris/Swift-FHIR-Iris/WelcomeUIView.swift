@@ -19,18 +19,18 @@ struct WelcomeUIView: View {
 
             Spacer()
             
-            Text("You have not yet authorise this application to use your health data").isHidden(swiftIrisManager.authorisedHK,remove: swiftIrisManager.authorisedHK)
+            Text("You have not yet authorize this application to use your health data").isHidden(swiftIrisManager.authorizedHK,remove: swiftIrisManager.authorizedHK)
 
-            Text("You have authorise this application to use your health data").isHidden(!swiftIrisManager.authorisedHK,remove: !swiftIrisManager.authorisedHK)
+            Text("You have authorize this application to use your health data").isHidden(!swiftIrisManager.authorizedHK,remove: !swiftIrisManager.authorizedHK)
             Spacer()
             
             Button(action: { getAuthorization() }, label: {
-              Text("Authorise")
-            }).isHidden(swiftIrisManager.authorisedHK,remove: swiftIrisManager.authorisedHK)
+              Text("Authorize")
+            }).isHidden(swiftIrisManager.authorizedHK,remove: swiftIrisManager.authorizedHK)
             
             Button(action: { self.goHome()  }, label: {
               Text("Continue")
-            }).isHidden(!swiftIrisManager.authorisedHK,remove: !swiftIrisManager.authorisedHK)
+            }).isHidden(!swiftIrisManager.authorizedHK,remove: !swiftIrisManager.authorizedHK)
             
             Spacer()
         }

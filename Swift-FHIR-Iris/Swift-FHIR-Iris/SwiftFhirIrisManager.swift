@@ -12,7 +12,7 @@ import FHIR
 
 class SwiftFhirIrisManager: NSObject,ObservableObject {
     
-    @Published var authorisedHK : Bool = false;
+    @Published var authorizedHK : Bool = false;
     
     let healthStore = HKHealthStore()
     
@@ -69,7 +69,7 @@ class SwiftFhirIrisManager: NSObject,ObservableObject {
             } else {
                 
                 DispatchQueue.main.async {
-                    self.authorisedHK = true
+                    self.authorizedHK = true
                 }
                 
             }

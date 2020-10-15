@@ -14,7 +14,7 @@ struct ContentView: View {
     // Get the business logic from the environment.
     @EnvironmentObject var swiftFhirIrisManager: SwiftFhirIrisManager
     
-    var authorise : Bool = false
+    var authorize : Bool = false
     
     var body: some View {
         
