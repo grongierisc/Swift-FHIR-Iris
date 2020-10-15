@@ -108,7 +108,7 @@ The app will first request you to accept to share some information.
 
 Click on authorize
 
-![authorise](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/ios_authorise.gif)
+![authorize](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/ios_authorize.gif)
 
 Then you can test the FHIR server by clicking on 'Save and test server'
 
@@ -192,7 +192,7 @@ The requestAuthorization method:
             } else {
                 
                 DispatchQueue.main.async {
-                    self.authorisedHK = true
+                    self.authorizedHK = true
                 }
                 
             }
