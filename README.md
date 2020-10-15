@@ -6,8 +6,8 @@ iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR re
 # Table of Contents
 * [Goal of this demo](#goal)
 * [How-To run this demo](#rundemo)
-  * [Prerequisites](#Prerequisites)
-  * [Install Xcode](#Installxcode)
+  * [Prerequisites](#prerequisites)
+  * [Install Xcode](#installxcode)
   * [Open the SwiftUi project](#openswiftui)
   * [Configure the simulator](#simulator)
   * [Lunch the InterSystems FHIR Server](#lunchfhir)
@@ -24,6 +24,7 @@ iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR re
 * [ToDos](#todo)
 
 <div id='goal'/>
+
 ## Goal of this demo 
 
 The objective is to create an end-to-end demonstration of the FHIR protocol.
@@ -37,7 +38,10 @@ This information must be accessible via a web interface.
 In short: iPhone -> InterSystems FHIR -> Web Page.
 
 <div id='rundemo'/>
+
 ## How-To run this demo 
+
+<div id='prerequisites'/>
 
 ### Prerequisites
 
@@ -46,9 +50,13 @@ In short: iPhone -> InterSystems FHIR -> Web Page.
  * For the server and Web app
    * Docker
 
+<div id='installxcode'/>
+
 ### Install Xcode
 
 Not much to say here, open the AppStore, search for Xcode, Install.
+
+<div id='openswiftui'/>
 
 ### Open the SwiftUi project
 
@@ -60,6 +68,7 @@ Open the simulator by a clic on the top left arrow.
 
 ![xcode](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/xcode_and_simulator.gif)
 
+<div id='simulator'/>
 
 ### Configure the simulator
 
@@ -70,6 +79,8 @@ Clic Steps
 Add Data
 
 ![simulator](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/configuration_simulator.gif)
+
+<div id='lunchfhir'/>
 
 ### Lunch the InterSystems FHIR Server
 
@@ -88,6 +99,8 @@ http://localhost:32783/fhir/portal/patientlist.html
 This portal was made by @diashenrique. 
 
 With some modification to handle Apple's activity foot steps.
+
+<div id='iosplay'/>
 
 ### Play with the iOS app
 
@@ -137,7 +150,11 @@ You can event clic on the chart button to display it as a chart.
 
 ![portal charts](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/portal_chart.gif)
 
+<div id='howtos'/>
+
 ## How it works
+
+<div id='howtosios'/>
 
 ### iOS
 
@@ -146,6 +163,8 @@ Most of this demo is build on SwiftUI.
 https://developer.apple.com/xcode/swiftui/
 
 Who is the latest framework for iOS and so.
+
+<div id='authorisation'/>
 
 #### How to check for authorization for health data works
 
@@ -196,6 +215,8 @@ The authorisation need a perpose and this is done in the Info.plist xml file by 
     <key>NSHealthUpdateUsageDescription</key>
     <string>Write date for IrisExporter</string>
 ```
+
+<div id='howtoFhir'/>
 
 #### How to connect to a FHIR Repository
 
@@ -257,6 +278,8 @@ To allow HTTP support, the Info.plist xml file is edited like this :
     </dict>
 ```
 
+<div id='howtoPatientFhir'/>
+
 #### How to save a patient in the FHIR Repository
 
 Basic operation by first checking if the patient already exist in the repository 
@@ -281,6 +304,8 @@ Next if the patient exist, we retrive it, otherwise we create the patient :
         })
     }
 ```
+
+<div id='queryHK'/>
 
 #### How to extrat data from the HealthKit
 
@@ -329,6 +354,8 @@ func queryStepCount(){
 
     }
 ```
+
+<div id='HKtoFHIR'/>
 
 #### How to transform HealthKit data to FHIR
 
@@ -394,17 +421,23 @@ At last the observationo is created in the fhir repository :
       })
 ```
 
+<div id='backend'/>
+
 ### Backend (FHIR)
 
 Not much to say, it's based on the fhir template form the InterSystems community :
 
 https://openexchange.intersystems.com/package/iris-fhir-template
 
+<div id='Frontend'/>
+
 ### Frontend
 
 It's based on Henrique works who is a nice front end for FHIR repositories made in jquery.
 
 https://openexchange.intersystems.com/package/iris-fhir-portal
+
+<div id='ToDo'/>
 
 ## ToDos
 
