@@ -25,7 +25,7 @@ iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR re
 
 <div id='goal'/>
 
-## Goal of this demo 
+# Goal of this demo 
 
 The objective is to create an end-to-end demonstration of the FHIR protocol.
 
@@ -39,11 +39,11 @@ This information must be accessible via a web interface.
 
 <div id='rundemo'/>
 
-## How-To run this demo 
+# How-To run this demo 
 
 <div id='prerequisites'/>
 
-### Prerequisites
+## Prerequisites
 
  * For the client part (iOS)
    * Xcode 12
@@ -52,13 +52,13 @@ This information must be accessible via a web interface.
 
 <div id='installxcode'/>
 
-### Install Xcode
+## Install Xcode
 
 Not much to say here, open the AppStore, search for Xcode, Install.
 
 <div id='openswiftui'/>
 
-### Open the SwiftUi project
+## Open the SwiftUi project
 
 Swift is Apple's programming language for iOS, Mac, Apple TV and Apple Watch. It is the replacement for objective-C.
 
@@ -70,7 +70,7 @@ Open the simulator by a click on the top left arrow.
 
 <div id='simulator'/>
 
-### Configure the simulator
+## Configure the simulator
 
 Go to Health
 
@@ -82,7 +82,7 @@ Add Data
 
 <div id='lunchfhir'/>
 
-### Lunch the InterSystems FHIR Server
+## Lunch the InterSystems FHIR Server
 
 In the root folder of this git, run the following command:
 
@@ -102,7 +102,7 @@ With some modification to handle Apple's activity footsteps.
 
 <div id='iosplay'/>
 
-### Play with the iOS app
+## Play with the iOS app
 
 The app will first request you to accept to share some information.
 
@@ -152,11 +152,11 @@ You can event click on the chart button to display it as a chart.
 
 <div id='howtos'/>
 
-## How it works
+# How it works
 
 <div id='howtosios'/>
 
-### iOS
+## iOS
 
 Most of this demo is built on SwiftUI.
 
@@ -166,7 +166,7 @@ Who is the latest framework for iOS and co.
 
 <div id='authorisation'/>
 
-#### How to check for authorization for health data works
+### How to check for authorization for health data works
 
 It's in the SwiftFhirIrisManager class. 
 
@@ -218,7 +218,7 @@ The authorization need a purpose and this is done in the Info.plist xml file by 
 
 <div id='howtoFhir'/>
 
-#### How to connect to a FHIR Repository
+### How to connect to a FHIR Repository
 
 For this part I used the FHIR package from Smart-On-FHIR : https://github.com/smart-on-fhir/Swift-FHIR
 
@@ -280,7 +280,7 @@ To allow HTTP support, the Info.plist xml file is edited like this:
 
 <div id='howtoPatientFhir'/>
 
-#### How to save a patient in the FHIR Repository
+### How to save a patient in the FHIR Repository
 
 Basic operation by first checking if the patient already exists in the repository 
 
@@ -307,7 +307,7 @@ Next if the patient exist, we retrieve it, otherwise we create the patient :
 
 <div id='queryHK'/>
 
-#### How to extract data from the HealthKit
+### How to extract data from the HealthKit
 
 It's done by querying the healthkit Store (HKHealthStore())
 
@@ -357,7 +357,7 @@ func queryStepCount(){
 
 <div id='HKtoFHIR'/>
 
-#### How to transform HealthKit data to FHIR
+### How to transform HealthKit data to FHIR
 
 For this part, we use the Microsoft package HealthKitToFHIR
 
@@ -423,7 +423,7 @@ At last the observation is created in the fhir repository :
 
 <div id='backend'/>
 
-### Backend (FHIR)
+## Backend (FHIR)
 
 Not much to say, it's based on the fhir template form the InterSystems community :
 
@@ -431,7 +431,7 @@ https://openexchange.intersystems.com/package/iris-fhir-template
 
 <div id='Frontend'/>
 
-### Frontend
+## Frontend
 
 It's based on Henrique works who is a nice front end for FHIR repositories made in jquery.
 
@@ -439,7 +439,7 @@ https://openexchange.intersystems.com/package/iris-fhir-portal
 
 <div id='ToDo'/>
 
-## ToDos
+# ToDos
 
 - [ ] add more code comments
 - [ ] handle patient name
