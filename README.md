@@ -209,7 +209,7 @@ If we can retrive the capabilityStatement of the FHIR server this mean we succes
 
 Basic operation by first checking if the patient already exist in the repository 
 
-```swiftt
+```swift
 Patient.search(["family": "\(self.lastName)"]).perform(fhirServer)
 ```
 
@@ -219,7 +219,7 @@ Here we can image othere workflow like with Oauth2 and JWT token to join the pat
 
 Next if the patient exist, we retrive it, otherwise we create the patient :
 
-```swiftt
+```swift
     func createPatient(callback: @escaping (Patient?, Error?) -> Void) {
         // Create the new patient resource
         let patient = Patient.createPatient(given: firstName, family: lastName, dateOfBirth: birthDay, gender: gender)
@@ -238,7 +238,7 @@ Here we are quering for footsteps.
 
 Prepare the query
 
-```swiftt
+```swift
 func queryStepCount(){
         
         //Last week
