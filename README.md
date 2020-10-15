@@ -3,6 +3,29 @@ iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR re
 
 ![main](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/FHIR.png)
 
+# Table of content
+
+# Table of Contents
+1. [Goal of this demo](#goal)
+2. [How-To run this demo](#rundemo)
+2.1. [Prerequisites](#Prerequisites)
+2.2. [Install Xcode](#Installxcode)
+2.3. [Open the SwiftUi project](#openswiftui)
+2.4. [Configure the simulator](#simulator)
+2.5. [Lunch the InterSystems FHIR Server](#lunchfhir)
+2.6. [Play with the iOS app](#iosplay)
+3. [How it works](#howtos)
+3.1. [iOS](#howtosios)
+3.1.1. [How to check for authorization for health data works](#authorisation)
+3.1.2. [How to connect to a FHIR Repository](#howtoFhir)
+3.1.3. [How to save a patient in the FHIR Repository](#howtoPatientFhir)
+3.1.4. [How to extrat data from the HealthKit](#queryHK)
+3.1.5. [How to transform HealthKit data to FHIR](#HKtoFHIR)
+3.2. [Backend (FHIR)](#backend)
+3.3. [Frontend](#frontend)
+4. [ToDos(#todo)
+
+
 ## Goal of this demo
 
 The objective is to create an end-to-end demonstration of the FHIR protocol.
@@ -126,7 +149,7 @@ https://developer.apple.com/xcode/swiftui/
 
 Who is the latest framework for iOS and so.
 
-#### How checking for authorization for health data works
+#### How to check for authorization for health data works
 
 It's in the SwiftFhirIrisManager class. 
 
@@ -309,7 +332,7 @@ func queryStepCount(){
     }
 ```
 
-#### How to transforme HealthKit data to FHIR
+#### How to transform HealthKit data to FHIR
 
 For this part, we use the microsoft package HealthKitToFHIR
 
