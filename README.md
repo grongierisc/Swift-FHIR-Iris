@@ -1,5 +1,5 @@
 # Swift-FHIR-Iris
-iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR respository)
+iOS app to export HealthKit data to InterSystems IRIS for Health (or any FHIR repository)
 
 ![main](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/FHIR.png)
 
@@ -62,9 +62,9 @@ Not much to say here, open the AppStore, search for Xcode, Install.
 
 Swift is Apple's programming language for iOS, Mac, Apple TV and Apple Watch. It is the replacement for objective-C.
 
-Double clic on Swift-FHIR-Iris.xcodeproj
+Double click on Swift-FHIR-Iris.xcodeproj
 
-Open the simulator by a clic on the top left arrow.
+Open the simulator by a click on the top left arrow.
 
 ![xcode](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/xcode_and_simulator.gif)
 
@@ -74,7 +74,7 @@ Open the simulator by a clic on the top left arrow.
 
 Go to Health
 
-Clic Steps
+Click Steps
 
 Add Data
 
@@ -84,13 +84,13 @@ Add Data
 
 ### Lunch the InterSystems FHIR Server
 
-In the root folder of this git, run the following command :
+In the root folder of this git, run the following command:
 
 ```sh
 docker-compose up -d
 ```
 
-At the end of the building procress you will be able to connect to the FHIR repository :
+At the end of the building process you will be able to connect to the FHIR repository :
 
 http://localhost:32783/fhir/portal/patientlist.html
 
@@ -98,7 +98,7 @@ http://localhost:32783/fhir/portal/patientlist.html
 
 This portal was made by @diashenrique. 
 
-With some modification to handle Apple's activity foot steps.
+With some modification to handle Apple's activity footsteps.
 
 <div id='iosplay'/>
 
@@ -106,47 +106,47 @@ With some modification to handle Apple's activity foot steps.
 
 The app will first request you to accept to share some information.
 
-Clic on authorise
+Click on authorize
 
 ![authorise](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/ios_authorise.gif)
 
 Then you can test the FHIR server by clicking on 'Save and test server'
 
-The deafult settings point to the docker configuration.
+The default settings point to the docker configuration.
 
-If succed, you can enter your patient informations.
+If succeed, you can enter your patient information.
 
-First Name, Last Name, Birth day, Genre.
+First Name, Last Name, Birthday, Genre.
 
 The save the patient to Fhir. A pop-up will show you your unique Fhir ID.
 
 ![savepatient](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/save_patient.gif)
 
-Consult this patient on the portal :
+Consult this patient on the portal:
 
-Go to : http://localhost:32783/fhir/portal/patientlist.html
+Go to: http://localhost:32783/fhir/portal/patientlist.html
 
-We can see here, that thier is a new patient "toto" with 0 activities.
+We can see here, that there is a new patient "toto" with 0 activities.
 
 ![patient portal](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/patient_toto.png)
 
-Send her activites :
+Send her activities:
 
-Go back to the iOS application and clic on Step count
+Go back to the iOS application and click on Step count
 
-This panel summuries the step count of the week. In our case 2 entries.
+This panel summaries the step count of the week. In our case 2 entries.
 
-Now you can send them to InterSystems IRIS FHIR by a clic on send.
+Now you can send them to InterSystems IRIS FHIR by a click on send.
 
 ![ios send](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/ios_send.gif)
 
-Consult the new activites on the portal :
+Consult the new activities on the portal:
 
 We can see now that Toto has two new observation and activities.
 
 ![portal activites](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/portal_activities.gif)
 
-You can event clic on the chart button to display it as a chart.
+You can event click on the chart button to display it as a chart.
 
 ![portal charts](https://raw.githubusercontent.com/grongierisc/Swift-FHIR-Iris/main/img/gif/portal_chart.gif)
 
@@ -158,11 +158,11 @@ You can event clic on the chart button to display it as a chart.
 
 ### iOS
 
-Most of this demo is build on SwiftUI.
+Most of this demo is built on SwiftUI.
 
 https://developer.apple.com/xcode/swiftui/
 
-Who is the latest framework for iOS and so.
+Who is the latest framework for iOS and co.
 
 <div id='authorisation'/>
 
@@ -170,11 +170,11 @@ Who is the latest framework for iOS and so.
 
 It's in the SwiftFhirIrisManager class. 
 
-This class is a singleton and it will be carry all around the application with @EnvironmentObject annotation.
+This class is a singleton and it will be carrying all around the application with @EnvironmentObject annotation.
 
 More info at : https://www.hackingwithswift.com/quick-start/swiftui/how-to-use-environmentobject-to-share-data-between-views
 
-The requestAuthorization method :
+The requestAuthorization method:
 
 ```swift
     // Request authorization to access HealthKit.
@@ -205,7 +205,7 @@ The HKHealthStore is like the database of healthdata in iOS.
 
 dataTypesToWrite and dataTypesToRead are the object we would like to query in the database.
 
-The authorisation need a perpose and this is done in the Info.plist xml file by adding :
+The authorization need a purpose and this is done in the Info.plist xml file by adding:
 
 ```xml
     <key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
@@ -252,15 +252,15 @@ The class used is the FHIROpenServer.
     }
 ```
 
-This create an new object fhirServer in the singleton swiftIrisManager.
+This create a new object fhirServer in the singleton swiftIrisManager.
 
 Next we use the getCapabilityStatement()
 
-If we can retrive the capabilityStatement of the FHIR server this mean we successufly connected to the FHIR repository.
+If we can retrieve the capabilityStatement of the FHIR server this mean we successfully connected to the FHIR repository.
 
 This repository is not in HTTPS, by default apple bock this kind of communication.
 
-To allow HTTP support, the Info.plist xml file is edited like this : 
+To allow HTTP support, the Info.plist xml file is edited like this: 
 
 ```xml
     <key>NSAppTransportSecurity</key>
@@ -282,7 +282,7 @@ To allow HTTP support, the Info.plist xml file is edited like this :
 
 #### How to save a patient in the FHIR Repository
 
-Basic operation by first checking if the patient already exist in the repository 
+Basic operation by first checking if the patient already exists in the repository 
 
 ```swift
 Patient.search(["family": "\(self.lastName)"]).perform(fhirServer)
@@ -290,9 +290,9 @@ Patient.search(["family": "\(self.lastName)"]).perform(fhirServer)
 
 This search for patient with the same family name. 
 
-Here we can imaging other senarios like with Oauth2 and JWT token to join the patientid and his token. But for this demo we keep things simple.
+Here we can imaging other scenarios like with Oauth2 and JWT token to join the patientid and his token. But for this demo we keep things simple.
 
-Next if the patient exist, we retrive it, otherwise we create the patient :
+Next if the patient exist, we retrieve it, otherwise we create the patient :
 
 ```swift
     func createPatient(callback: @escaping (Patient?, Error?) -> Void) {
@@ -307,11 +307,11 @@ Next if the patient exist, we retrive it, otherwise we create the patient :
 
 <div id='queryHK'/>
 
-#### How to extrat data from the HealthKit
+#### How to extract data from the HealthKit
 
-It's done by quering the healthkit Store (HKHealthStore())
+It's done by querying the healthkit Store (HKHealthStore())
 
-Here we are quering for footsteps.
+Here we are querying for footsteps.
 
 Prepare the query with the predicate.
 
@@ -326,7 +326,7 @@ Prepare the query with the predicate.
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: HKQueryOptions.strictEndDate)
 ```
 
-Then the query it self with his type of data (HKQuantityType.quantityType(forIdentifier: .stepCount)) and the predicate.
+Then the query itself with his type of data (HKQuantityType.quantityType(forIdentifier: .stepCount)) and the predicate.
 
 ```swift
 func queryStepCount(){
@@ -359,11 +359,11 @@ func queryStepCount(){
 
 #### How to transform HealthKit data to FHIR
 
-For this part, we use the microsoft package HealthKitToFHIR
+For this part, we use the Microsoft package HealthKitToFHIR
 
 https://github.com/microsoft/healthkit-to-fhir
 
-This is a convinente package that offer factories to transforme HKQuantitySample to FHIR Observation
+This is a usefull package that offer factories to transform HKQuantitySample to FHIR Observation
 
 ```swift
      let observation = try! ObservationFactory().observation(from: item)
@@ -387,11 +387,11 @@ This is a convinente package that offer factories to transforme HKQuantitySample
       })
 ```
 
-Where item is an HKQuantitySample in our case an stepCount type.
+Where item is an HKQuantitySample in our case a stepCount type.
 
 The factory does most of the job of converting 'unit' and 'type' to FHIR codeableConcept and 'value' to FHIR valueQuantity.
 
-The reference to the patientId is done manualy by casting a json fhir refenrence.
+The reference to the patientId is done manually by casting a json fhir reference.
 
 ```swift
 let patientReference = try! Reference(json: ["reference" : "Patient/\(patientId)"])
@@ -411,7 +411,7 @@ Same is done for the category :
       ])]
 ```
 
-At last the observationo is created in the fhir repository :
+At last the observation is created in the fhir repository :
 
 ```swift
       observation.create(self.fhirServer,callback: { (error) in
