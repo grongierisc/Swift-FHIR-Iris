@@ -165,6 +165,17 @@ The HKHealthStore is like the database of healthdata in iOS.
 
 dataTypesToWrite and dataTypesToRead are the object we would like to query in the database.
 
+The authorisation need a perpose and this is done in the Info.plist xml file by adding :
+
+```xml
+    <key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+    <string>Read data for IrisExporter</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>Send data to IRIS</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>Write date for IrisExporter</string>
+```
+
 #### How to connect to a FHIR Repository
 
 For this part I used the FHIR package from Smart-On-FHIR : https://github.com/smart-on-fhir/Swift-FHIR
@@ -205,6 +216,26 @@ Next we use the getCapabilityStatement()
 
 If we can retrive the capabilityStatement of the FHIR server this mean we successufly connected to the FHIR repository.
 
+This repository is not in HTTPS, by default apple bock this kind of communication.
+
+To allow HTTP support, the Info.plist xml file is edited like this : 
+
+```xml
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>localhost</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
+```
+
 #### How to save a patient in the FHIR Repository
 
 Basic operation by first checking if the patient already exist in the repository 
@@ -215,7 +246,7 @@ Patient.search(["family": "\(self.lastName)"]).perform(fhirServer)
 
 This search for patient with the same family name. 
 
-Here we can image othere workflow like with Oauth2 and JWT token to join the patientid and his token. But for this demo we keep things simple.
+Here we can imaging other senarios like with Oauth2 and JWT token to join the patientid and his token. But for this demo we keep things simple.
 
 Next if the patient exist, we retrive it, otherwise we create the patient :
 
@@ -236,7 +267,20 @@ It's done by quering the healthkit Store (HKHealthStore())
 
 Here we are quering for footsteps.
 
-Prepare the query
+Prepare the query with the predicate.
+
+```swift
+        //Last week
+        let startDate = swiftFhirIrisManager.startDate
+        //Now
+        let endDate = swiftFhirIrisManager.endDate
+
+        print("Collecting workouts between \(startDate) and \(endDate)")
+
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: HKQueryOptions.strictEndDate)
+```
+
+Then the query it self with his type of data (HKQuantityType.quantityType(forIdentifier: .stepCount)) and the predicate.
 
 ```swift
 func queryStepCount(){
@@ -263,6 +307,70 @@ func queryStepCount(){
         healthStore.execute(query)
 
     }
+```
+
+#### How to transforme HealthKit data to FHIR
+
+For this part, we use the microsoft package HealthKitToFHIR
+
+https://github.com/microsoft/healthkit-to-fhir
+
+This is a convinente package that offer factories to transforme HKQuantitySample to FHIR Observation
+
+```swift
+     let observation = try! ObservationFactory().observation(from: item)
+      let patientReference = try! Reference(json: ["reference" : "Patient/\(patientId)"])
+      observation.category = try! [CodeableConcept(json: [
+          "coding": [
+            [
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "activity",
+              "display": "Activity"
+            ]
+          ]
+      ])]
+      observation.subject = patientReference
+      observation.status = .final
+      print(observation)
+      observation.create(self.fhirServer,callback: { (error) in
+          if error != nil {
+              completion(error)
+          }
+      })
+```
+
+Where item is an HKQuantitySample in our case an stepCount type.
+
+The factory does most of the job of converting 'unit' and 'type' to FHIR codeableConcept and 'value' to FHIR valueQuantity.
+
+The reference to the patientId is done manualy by casting a json fhir refenrence.
+
+```swift
+let patientReference = try! Reference(json: ["reference" : "Patient/\(patientId)"])
+```
+
+Same is done for the category :
+
+```swift
+      observation.category = try! [CodeableConcept(json: [
+          "coding": [
+            [
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "activity",
+              "display": "Activity"
+            ]
+          ]
+      ])]
+```
+
+At last the observationo is created in the fhir repository :
+
+```swift
+      observation.create(self.fhirServer,callback: { (error) in
+          if error != nil {
+              completion(error)
+          }
+      })
 ```
 
 ### Backend (FHIR)
