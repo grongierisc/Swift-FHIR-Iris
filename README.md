@@ -126,7 +126,7 @@ https://developer.apple.com/xcode/swiftui/
 
 Who is the latest framework for iOS and so.
 
-#### How it's checking for authorization for health datas
+#### How checking for authorization for health data works
 
 It's in the SwiftFhirIrisManager class. 
 
@@ -205,7 +205,65 @@ Next we use the getCapabilityStatement()
 
 If we can retrive the capabilityStatement of the FHIR server this mean we successufly connected to the FHIR repository.
 
-#### How to connect to save a patient in the FHIR Repository
+#### How to save a patient in the FHIR Repository
+
+Basic operation by first checking if the patient already exist in the repository 
+
+```swiftt
+Patient.search(["family": "\(self.lastName)"]).perform(fhirServer)
+```
+
+This search for patient with the same family name. 
+
+Here we can image othere workflow like with Oauth2 and JWT token to join the patientid and his token. But for this demo we keep things simple.
+
+Next if the patient exist, we retrive it, otherwise we create the patient :
+
+```swiftt
+    func createPatient(callback: @escaping (Patient?, Error?) -> Void) {
+        // Create the new patient resource
+        let patient = Patient.createPatient(given: firstName, family: lastName, dateOfBirth: birthDay, gender: gender)
+        
+        patient?.create(fhirServer, callback: { (error) in
+            callback(patient, error)
+        })
+    }
+```
+
+#### How to extrat data from the HealthKit
+
+It's done by quering the healthkit Store (HKHealthStore())
+
+Here we are quering for footsteps.
+
+Prepare the query
+
+```swiftt
+func queryStepCount(){
+        
+        //Last week
+        let startDate = swiftFhirIrisManager.startDate
+        //Now
+        let endDate = swiftFhirIrisManager.endDate
+
+        print("Collecting workouts between \(startDate) and \(endDate)")
+
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: HKQueryOptions.strictEndDate)
+
+        let query = HKSampleQuery(sampleType: HKQuantityType.quantityType(forIdentifier: .stepCount)!, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
+            
+            guard let results = results as? [HKQuantitySample] else {
+                   return
+            }
+       
+            process(results, type: .stepCount)
+        
+        }
+
+        healthStore.execute(query)
+
+    }
+```
 
 ### Backend (FHIR)
 
