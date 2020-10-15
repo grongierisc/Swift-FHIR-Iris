@@ -35,7 +35,7 @@ Collect your health data in Apple format (HealthKit), transform it into FHIR and
 This information must be accessible via a web interface.
 
 
-In short: iPhone -> InterSystems FHIR -> Web Page.
+**TL;DR**: iPhone -> InterSystems FHIR -> Web Page.
 
 <div id='rundemo'/>
 
