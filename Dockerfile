@@ -15,8 +15,10 @@ USER ${ISC_PACKAGE_MGRUSER}
 COPY . .
 COPY data/fhir fhirdata
 COPY iris.script /tmp/iris.script
-#COPY fhirUI /usr/irissys/csp/user/fhirUI
 
 # run iris and initial 
 RUN iris start IRIS \
-	&& iris session IRIS < /tmp/iris.script
+	&& iris session IRIS < /tmp/iris.script \
+    && iris stop IRIS quietly
+
+COPY fhirUI /usr/irissys/csp/user/fhirUI
