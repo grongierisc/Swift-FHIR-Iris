@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     command: --check-caps false
+    hostname: iOS HealthKit to FHIR
     ports:
       - 32782:1972
       - 32783:52773
