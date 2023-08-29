@@ -15,7 +15,9 @@
     },
     "links": {
       "FHIR UI Demo": "http://${host}:${port}/fhir/portal/patientlist.html",
-      "FHIR server test": "http://${host}:${port}/fhir/r4/metadata"
+      "FHIR server test": "http://${host}:${port}/fhir/r4/metadata",
+      "FHIR SQL Builder": "http://${host}:${port}/csp/fhirsql/index.html",
+      "IRIS SQL Portal": "http://${host}:${port}/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=${ns}"
     }
   },
   "sqltools.connections": [{
