@@ -1,0 +1,129 @@
+{
+  "name": "T1",
+  "description": "",
+  "resources": [
+    {
+      "resourceType": "Patient",
+      "columns": [
+        {
+          "name": "Gender",
+          "type": "String",
+          "path": "Patient.gender",
+          "index": true
+        },
+        {
+          "name": "BirthDate",
+          "type": "String",
+          "path": "Patient.birthDate",
+          "index": true
+        },
+        {
+          "name": "AddressCity",
+          "type": "String",
+          "path": "Patient.address.city",
+          "index": false
+        },
+        {
+          "name": "AddressCountry",
+          "type": "String",
+          "path": "Patient.address.country",
+          "index": false
+        },
+        {
+          "name": "NameUse",
+          "type": "String",
+          "path": "Patient.name.use",
+          "index": false
+        },
+        {
+          "name": "NameFamily",
+          "type": "String",
+          "path": "Patient.name.family",
+          "index": false
+        },
+        {
+          "name": "NameGiven",
+          "type": "String",
+          "path": "Patient.name.given",
+          "index": false
+        }
+      ]
+    },
+    {
+      "resourceType": "Observation",
+      "columns": [
+        {
+          "name": "CodeCodingDisplay",
+          "type": "String",
+          "path": "Observation.code.coding.display",
+          "index": false
+        },
+        {
+          "name": "SubjectReference",
+          "type": "String",
+          "path": "Observation.subject.reference",
+          "index": false
+        },
+        {
+          "name": "ValueCodeableConceptCodingDisplay",
+          "type": "String",
+          "path": "Observation.valueCodeableConcept.coding.display",
+          "index": false
+        },
+        {
+          "name": "ValueQuantityCode",
+          "type": "String",
+          "path": "Observation.valueQuantity.code",
+          "index": false
+        },
+        {
+          "name": "ValueQuantityValue",
+          "type": "Number",
+          "path": "Observation.valueQuantity.value",
+          "index": false
+        },
+        {
+          "name": "ValueQuantityUnit",
+          "type": "String",
+          "path": "Observation.valueQuantity.unit",
+          "index": false
+        },
+        {
+          "name": "ValueQuantitySystem",
+          "type": "String",
+          "path": "Observation.valueQuantity.system",
+          "index": false
+        },
+        {
+          "name": "ComponentValueQuantityValue",
+          "type": "Number",
+          "path": "Observation.component.valueQuantity.value",
+          "index": false
+        },
+        {
+          "name": "ComponentValueQuantitySystem",
+          "type": "String",
+          "path": "Observation.component.valueQuantity.system",
+          "index": false
+        }
+      ]
+    },
+    {
+      "resourceType": "Practitioner",
+      "columns": [
+        {
+          "name": "NameGiven",
+          "type": "String",
+          "path": "Practitioner.name.given",
+          "index": false
+        },
+        {
+          "name": "AddressCity",
+          "type": "String",
+          "path": "Practitioner.address.city",
+          "index": false
+        }
+      ]
+    }
+  ]
+}
