@@ -14,8 +14,8 @@
       "internalPort": 52773
     },
     "links": {
-      "FHIR UI Demo": "http://localhost:${port}/fhir/portal/patientlist.html",
-      "FHIR server test": "http://localhost:${port}/fhir/r4/metadata"
+      "FHIR UI Demo": "http://${host}:${port}/fhir/portal/patientlist.html",
+      "FHIR server test": "http://${host}:${port}/fhir/r4/metadata"
     }
   },
   "sqltools.connections": [{
